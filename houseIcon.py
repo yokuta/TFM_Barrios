@@ -25,7 +25,7 @@ home_button_html = """
 </style>
 
 <div class="home-icon">
-  <a href="https://yokuta.github.io/proyectos/proyectoSantanderSemanaGrande.html" title="Inicio">
+  <a href="https://yokuta.github.io/TFM_Barrios/index.html" title="Inicio">
     <img src="https://yokuta.github.io/imagenes/housee.png" alt="Inicio" class="home-img">
   </a>
 </div>
