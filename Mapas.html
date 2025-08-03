@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Proyecto - Acceso Hospitales España</title>
+  <link rel="stylesheet" href="styleProjects.css" />
+  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+ 
+</head>
+<body>
+  <div id="particles-js"></div>
+  <header class="top-bar">
+    <div class="logo">
+      <a href="https://yokuta.github.io/">
+        <img src="../imagenes/duck.gif" alt="Logo Duck" class="logo-img">
+      </a>
+    </div>
+    <nav class="menu">
+      <a href="../proyectos.html">Proyectos</a>
+      <a href="../sobre-mi.html">Sobre mí</a>
+    </nav>
+  </header>
+  
+  <div class="content">
+    <main>
+      <section>
+         <h2 class = "titulo-ancho">¿Cuánto tiempo se tarda en llegar a un hospital en España? 🏥</h2>
+        <section>
+          <p>
+            En emergencias médicas, el tiempo puede ser la diferencia entre la vida y la muerte. Sin embargo, no todas las personas que viven en España tienen el mismo acceso a un hospital. Mientras en las grandes ciudades la atención médica está a minutos de distancia, en muchas zonas rurales llegar a un centro hospitalario puede requerir una hora o más de viaje. Esta desigualdad geográfica, silenciosa pero persistente, fue el punto de partida de este proyecto.
+          </p>
+
+          <p>
+            El objetivo era claro: medir, municipio a municipio, cuánto tarda una persona en llegar en coche al hospital más cercano. ¿Qué tan accesible es realmente el sistema sanitario? ¿Qué patrones emergen cuando cruzamos estos datos con la densidad de población?
+          </p>
+
+          <h3>¿Cómo se construye un mapa así?</h3>
+          <p>
+            Aunque parezca sencillo a primera vista, no existía una base de datos pública que ofreciera directamente este tipo de información a nivel municipal. Por ello, el primer paso fue localizar una fuente alternativa: el portal <strong>SIDAMUN</strong>, que ofrece análisis de accesibilidad sanitaria para cada municipio, aunque solo en forma de imágenes generadas dinámicamente, no como tablas descargables. Esto implicó diseñar una estrategia técnica para extraer los datos. Utilicé un enfoque de <em>web scraping</em> automatizado: un script en Python combinando librerías como <strong>requests</strong>, <strong>BeautifulSoup</strong> y <strong>Selenium</strong> permitió navegar por la web y descargar sistemáticamente las imágenes generadas por cada búsqueda.
+          </p>
+
+          <p>
+            Una vez obtenidas las imágenes, la siguiente fase fue aplicar <strong>reconocimiento óptico de caracteres (OCR)</strong> con herramientas como <strong>pytesseract</strong> y <strong>OpenCV</strong>. Esto permitió extraer automáticamente la información clave: el nombre del municipio, su población, y el tiempo medio de acceso hospitalario en minutos. Los datos extraídos fueron luego estructurados y depurados usando <strong>pandas</strong> y <strong>numpy</strong>, y preparados para su análisis geoespacial. Finalmente, importé toda la información a <strong>QGIS</strong>, donde creé un mapa interactivo que visualiza, mediante una escala de colores, el tiempo estimado de acceso desde cada municipio al hospital más cercano.
+          </p>
+
+          <div class="project-images">
+            <img src="/imagenes/proyectos/traveltime.jpg" alt="Mapa acceso hospitales España">
+          </div>
+
+          <h3>¿Qué nos cuenta este mapa?</h3>
+          <p>
+            El resultado es tan visual como revelador. En buena parte del interior peninsular, la llamada “España vacía”,  los colores oscuros del mapa indican tiempos de desplazamiento que superan los 45 o incluso los 60 minutos. En contraste, la costa, los grandes núcleos urbanos y las zonas metropolitanas gozan de accesibilidad inmediata. Este no es un simple problema logístico: es una expresión concreta de la desigualdad territorial. Como escribió Sergio del Molino en <em>La España vacía</em>, el abandono de ciertos territorios no es casualidad, sino el resultado de una larga cadena de decisiones que priorizaron lo urbano sobre lo rural. La falta de servicios básicos, como la atención sanitaria urgente, no solo es consecuencia de la despoblación: también es una de sus causas más graves.
+          </p>
+
+          <p>
+            Cuando vivir en un lugar implica aceptar que una ambulancia tardará más de una hora en llegar, estamos hablando de derechos desiguales. Este proyecto pretende, desde los datos y la tecnología, visibilizar ese desequilibrio. Porque ningún lugar de España debería quedar tan lejos de algo tan esencial como la salud.
+          </p>
+
+          <p>
+            Además del mapa, también generé un <strong>diagrama de dispersión</strong> cruzando la población de cada municipio con su tiempo medio de acceso hospitalario. Así pueden observarse patrones de concentración, identificar municipios críticos, y contrastar percepciones con evidencia.
+          </p>
+
+          <h3>Una reflexión final</h3>
+          <p>
+            A través de la tecnología, los datos y la visualización geoespacial, este proyecto no solo busca informar, sino provocar una reflexión: ¿qué significa tener acceso real a los servicios públicos? ¿Estamos dispuestos a aceptar que, dependiendo del código postal, la salud llegue más tarde?
+          </p>
+        </section>
+      <div class="project-links">
+        <a href="https://github.com/yokuta" target="_blank">
+          <img src="/imagenes/github2.png" alt="GitHub">
+        </a>
+        <a href="https://www.linkedin.com/feed/update/urn:li:activity:7311024217016217601/" target="_blank">
+          <img src="/imagenes/linkedin2.png" alt="LinkedIn">
+        </a>
+      </div>
+    </main>
+  </div>
+</body>
+</html>
+
+
+<script>
+  particlesJS("particles-js", {
+    "particles": {
+      "number": {
+        "value": 80,
+        "density": { "enable": true, "value_area": 800 }
+      },
+      "color": { "value": "#ffffff" },
+      "shape": {
+        "type": "circle",
+        "stroke": { "width": 0, "color": "#000000" }
+      },
+      "opacity": {
+        "value": 0.5,
+        "random": false
+      },
+      "size": {
+        "value": 3,
+        "random": true
+      },
+      "line_linked": {
+        "enable": true,
+        "distance": 150,
+        "color": "#ffffff",
+        "opacity": 0.4,
+        "width": 1
+      },
+      "move": {
+        "enable": true,
+        "speed": 2,
+        "direction": "none",
+        "out_mode": "out"
+      }
+    },
+    "interactivity": {
+      "detect_on": "canvas",
+      "events": {
+        "onhover": { "enable": true, "mode": "grab" },
+        "onclick": { "enable": true, "mode": "push" }
+      },
+      "modes": {
+        "grab": { "distance": 140, "line_linked": { "opacity": 1 } },
+        "push": { "particles_nb": 4 }
+      }
+    },
+    "retina_detect": true
+  });
+</script>
