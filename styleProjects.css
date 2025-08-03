@@ -1,0 +1,416 @@
+  /* ---------------------------
+    ESTILO GENERAL DEL PROYECTO
+  ---------------------------- */
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background-color: #0e0e0e;
+    color: #ffffff;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+  }
+
+  .content {
+    max-width: 960px;
+    margin: auto;
+    padding: 3rem 1.5rem;
+  }
+
+  h2 {
+    font-size: 2.2rem;
+    margin-bottom: 1rem;
+    color: #ffdd57;
+  }
+
+  h3 {
+    margin-top: 2rem;
+    color: #dddddd;
+  }
+
+  p, li {
+    font-size: 1.1rem;
+    color: #ccc;
+  }
+
+  ul {
+    padding-left: 1.5rem;
+  }
+
+  li {
+    margin-bottom: 0.7rem;
+  }
+
+  /* ---------------------------
+    IMÁGENES DEL PROYECTO
+  ---------------------------- */
+  .project-images {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+
+  .project-images img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(255,255,255,0.1);
+    transition: transform 0.3s ease;
+  }
+
+  .project-images img:hover {
+    transform: scale(1.03);
+  }
+
+  /* ---------------------------
+    BOTONES SOCIALES
+  ---------------------------- */
+  .project-links {
+    margin-top: 2.5rem;
+  }
+
+  .project-links a {
+    display: inline-block;
+    margin-right: 1rem;
+    padding: 0.6rem 1.2rem;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: background 0.3s ease;
+    color: white;
+    background: #333;
+  }
+
+  .project-links a.github:hover {
+    background-color: #24292e;
+  }
+
+  .project-links a.linkedin:hover {
+    background-color: #0077b5;
+  }
+
+  /* ---------------------------
+    RESPONSIVE
+  ---------------------------- */
+  @media (max-width: 768px) {
+    h2 {
+      font-size: 1.8rem;
+    }
+    .project-images {
+      flex-direction: column;
+    }
+  }
+
+
+
+  .logo-img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    object-fit: cover;
+      display: block;
+  }
+
+
+  .logo {
+  display: block;
+  }
+
+
+/* ====================
+   TOP BAR
+==================== */
+.top-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2rem 3rem  ; /* ← este 3rem iguala el .content */
+}
+
+
+.logo {
+  font-size: 1.8rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-decoration: none;
+  color: white;
+}
+
+/* ====================
+   MENU LINKS
+==================== */
+.menu a {
+  display: inline-block;
+  perspective: 600px;
+  margin-left: 2rem;
+  text-decoration: none;
+  color: white;
+  font-weight: 400;
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+.menu a span {
+  display: inline-block;
+  transition: transform 0.4s ease, color 0.3s ease;
+  transform-origin: center bottom;
+}
+
+.menu a:hover span {
+  transform: rotateX(20deg);
+  color: #ffffff;
+}
+
+/* Underline on hover */
+.menu a::after {
+  content: "";
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  height: 2px;
+  width: 0%;
+  background-color: #ffffff;
+  transition: width 0.3s ease;
+}
+
+.menu a:hover::after {
+  width: 100%;
+}
+
+/* Active link */
+.menu a.active span {
+  color: #ffffff;
+  font-weight: 700;
+  text-shadow: 0 0 10px #ffffff;
+}
+
+.menu a.active::after {
+  width: 100%;
+  background-color: #ffffff;
+}
+
+/* ====================
+   PROJECTS GRID
+==================== */
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  padding: 2rem 0;
+}
+
+.project-card {
+  background-color: rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+  padding: 1rem;
+  text-align: center;
+  backdrop-filter: blur(5px);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.project-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+}
+
+.project-card img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin-bottom: 0.8rem;
+}
+
+.project-card h3 {
+  margin: 0.5rem 0;
+  font-size: 1.2rem;
+}
+
+.project-card p {
+  font-size: 0.95rem;
+  line-height: 1.4;
+  color: #ccc;
+}
+
+.project-card a {
+  display: inline-block;
+  margin-top: 0.8rem;
+  color: #ffffff;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+/* ====================
+   CUSTOM CURSOR
+==================== */
+.cursor-light {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 80px;
+  height: 80px;
+  pointer-events: none;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, transparent 70%);
+  mix-blend-mode: screen;
+  opacity: 0;
+  transition: transform 0.05s ease-out, opacity 0.3s ease;
+  z-index: 0;
+}
+
+body:hover .cursor-light {
+  opacity: 1;
+}
+
+
+
+/* Video de proyectos*/
+.bg-video-full {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover; /* Ocupa toda la pantalla sin bandas negras */
+  object-position: center center;
+  z-index: -2;
+}
+
+
+
+
+body {
+  overflow: auto;
+}
+
+
+body.scrollable {
+  overflow-y: auto;
+}
+
+
+
+#particles-js {
+  position: fixed;
+  background: #000000;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1; /* muy importante para que esté detrás del contenido */
+  pointer-events: none; /* permite hacer clic a través del canvas */
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: #000000;
+  color: #fff;
+  margin: 0;
+  padding: 0;
+}
+.menu a {
+  color: white;
+  margin-left: 1.5rem;
+  text-decoration: none;
+  font-weight: 400;
+}
+.content {
+  max-width: 900px;
+  margin: 3rem auto;
+  padding: 0 2rem;
+}
+h2, h3 {
+  color: #ffdd57;
+}
+ul {
+  padding-left: 1.2rem;
+}
+.project-images {
+  text-align: center;
+  margin: 2.5rem 0;
+}
+.project-images img {
+  width: 90%;
+  max-width: 700px;
+  border-radius: 8px;
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.15);
+}
+.project-links {
+  margin-top: 3rem;
+  text-align: center;
+}
+.project-links a {
+  display: inline-block;
+  margin: 0 1rem;
+  text-decoration: none;
+}
+.project-links img {
+  height: 32px;
+  vertical-align: middle;
+}
+
+.carousel-container {
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  display: flex;
+  width: 100%;
+  margin: 2rem 0;
+}
+
+.carousel-track {
+  display: flex;
+  gap: 1rem;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+}
+
+.carousel-track img {
+  flex-shrink: 0;
+  width: 100%;
+  max-width: 600px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(255,255,255,0.1);
+  scroll-snap-align: start;
+}
+.carousel-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.carousel-btn {
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+  font-size: 2rem;
+  border: none;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  z-index: 1;
+  border-radius: 5px;
+  transition: background 0.3s;
+}
+
+.carousel-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.carousel-btn.left {
+  margin-right: 1rem;
+}
+
+.carousel-btn.right {
+  margin-left: 1rem;
+}
+
+
+
+
+.carousel-track {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+  width: 100%;
+}
+
+.carousel-track a {
+  flex: 0 0 100%;
+}
