@@ -14,16 +14,12 @@
     </ul>
 </div>
 
-<script>
-function filtrarBarrio() {
-    var input = document.getElementById('barrioSearch').value.toLowerCase();
-    var items = document.getElementById('barrioList').getElementsByTagName('li');
-    for (var i = 0; i < items.length; i++) {
-        var texto = items[i].innerText.toLowerCase();
-        items[i].style.display = texto.includes(input) ? '' : 'none';
-    }
-}
-</script>
+
+
+
+
+
+
 
 
 <!DOCTYPE html>
@@ -149,20 +145,23 @@ function filtrarBarrio() {
         </div>
         
 
-        <script>
-        function filtrarBarrio() {
-            var input = document.getElementById('barrioSearch').value.toLowerCase();
-            var items = document.getElementById('barrioList').getElementsByTagName('li');
-            for (var i = 0; i < items.length; i++) {
-                var texto = items[i].innerText.toLowerCase();
-                items[i].style.display = texto.includes(input) ? '' : 'none';
-            }
-        }
-        </script>
+        
         
     
             <div class="folium-map" id="map_5d3de472a462a9f07a1ccac61297e344" ></div>
         
+
+<script>
+function filtrarBarrio() {
+    var input = document.getElementById('barrioSearch').value.toLowerCase();
+    var items = document.getElementById('barrioList').getElementsByTagName('li');
+    for (var i = 0; i < items.length; i++) {
+        var texto = items[i].innerText.toLowerCase();
+        items[i].style.display = texto.includes(input) ? '' : 'none';
+    }
+}
+</script>
+
 </body>
 <script>
     
