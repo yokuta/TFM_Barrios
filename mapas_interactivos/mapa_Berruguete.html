@@ -1,3 +1,31 @@
+<!-- 🔘 Selector de vista: Mapa o Animación -->
+<div style="position: fixed; top: 300px; left: 50px; z-index: 9999; background: white; padding: 5px; border-radius: 5px;">
+  <b>Selecciona vista:</b><br>
+  <button onclick="location.href='mapa_Berruguete.html'" style="margin: 5px;">🗺️ Mapa de Madrid</button>
+  <button onclick="location.href='../mapas_con_barrios/mapa_destinos_desde_Berruguete.html'" style="margin: 5px;">🎞️ Animación Madrid</button>
+</div>
+
+<!-- 🔍 Buscador de barrios -->
+<div style="position: fixed; top: 10px; left: 50px; z-index: 9999; background: white; padding: 5px; border-radius: 5px;">
+    <label for='barrioSearch'><b>Buscar barrio:</b></label><br>
+    <input type='text' id='barrioSearch' onkeyup='filtrarBarrio()' placeholder='Escribe un barrio...' style='width:200px;'>
+    <ul id='barrioList' style='max-height:200px; overflow:auto; list-style:none; padding:0; margin:5px 0;'>
+        <!-- Aquí deberías insertar la lista si quieres -->
+    </ul>
+</div>
+
+<script>
+function filtrarBarrio() {
+    var input = document.getElementById('barrioSearch').value.toLowerCase();
+    var items = document.getElementById('barrioList').getElementsByTagName('li');
+    for (var i = 0; i < items.length; i++) {
+        var texto = items[i].innerText.toLowerCase();
+        items[i].style.display = texto.includes(input) ? '' : 'none';
+    }
+}
+</script>
+
+
 <!DOCTYPE html>
 <html>
 <head>
