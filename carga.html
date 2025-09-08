@@ -1,140 +1,131 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Presentación TFM - Juan Jiménez Fernández</title>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;500;700&display=swap" rel="stylesheet">
   <style>
-    body, html {
-      margin: 0;
-      padding: 0;
-      width: 100%;
-      height: 100%;
-      font-family: 'Roboto', sans-serif;
-      background: url('https://source.unsplash.com/1600x900/?madrid,city') center/cover no-repeat;
-      display: flex;
-      justify-content: center;
-      align-items: center;
+    html, body{
+      height:100%; margin:0; font-family:'Roboto',sans-serif;
+      background:url('https://source.unsplash.com/1600x900/?madrid,city') center/cover no-repeat;
     }
 
-    /* Velo semitransparente */
-    .overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.6);
-      backdrop-filter: blur(4px);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 20px;
-      color: #fff;
+    /* Fondo / overlay */
+    .overlay{
+      position:fixed; inset:0; background:rgba(0,0,0,.6);
+      backdrop-filter:blur(4px);
+      display:grid; place-items:center; padding:20px; color:#fff; z-index:1000;
+      animation:overlayIn .35s ease both;
     }
 
-    /* Caja central */
-    .intro-box {
-      background: #ffffffcc;
-      color: #333;
-      padding: 30px 40px;
-      max-width: 600px;
-      width: 90%;
-      border-radius: 12px;
-      text-align: center;
-      position: relative;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.3);
-      animation: fadeIn 1s ease;
+    /* Wrapper relativo para pegar la flecha al borde de la caja */
+    .intro-wrap{ position:relative; display:inline-block; }
+
+    /* Caja */
+    .intro-box{
+      position:relative; background:#ffffffcc; color:#333;
+      max-width:min(680px,92vw); max-height:90vh; width:100%;
+      overflow:auto; border-radius:12px; padding:30px 40px;
+      box-shadow:0 12px 30px rgba(0,0,0,.25);
+      animation:boxIn .35s ease both;
+      text-align:center;
     }
 
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(-20px); }
-      to { opacity: 1; transform: translateY(0); }
+    /* Botón ✕ arriba derecha */
+    .close-btn{
+      position:absolute; top:12px; right:12px;
+      width:36px; height:36px; border-radius:50%;
+      border:0; background:#ff5a5a; color:#fff; font-size:18px; cursor:pointer;
     }
+    .close-btn:hover{ background:#ff2c2c; }
 
-    .close-btn {
-      position: absolute;
-      top: 15px;
-      right: 15px;
-      background: #ff5a5a;
-      color: #fff;
-      border: none;
-      border-radius: 50%;
-      width: 35px;
-      height: 35px;
-      font-size: 18px;
-      cursor: pointer;
-      transition: background 0.3s ease;
-    }
+    .logo{ width:120px; margin-bottom:15px; }
 
-    .close-btn:hover {
-      background: #ff2c2c;
-    }
+    .emails{ margin-top:15px; font-size:.9rem; color:#555; background:#f0f0f0;
+      padding:10px; border-radius:8px; }
 
-    .logo {
-      width: 120px;
-      margin-bottom: 15px;
+    /* Flecha pegada al lateral de la caja */
+    .arrow-btn{
+      position:absolute; top:50%; right:-18px; transform:translateY(-50%);
+      width:44px; height:44px; border-radius:50%; border:0; cursor:pointer;
+      background:#ff5a5a; color:#fff; font-size:26px; line-height:44px;
+      box-shadow:0 8px 18px rgba(0,0,0,.25);
+      animation:pulse 1.6s infinite;
     }
+    .arrow-btn:hover{ transform:translateY(-50%) translateX(2px); }
 
-    .emails {
-      margin-top: 15px;
-      font-size: 0.9rem;
-      color: #555;
-      background: #f0f0f0;
-      padding: 10px;
-      border-radius: 8px;
-    }
+    /* Entradas */
+    @keyframes overlayIn{ from{opacity:0} to{opacity:1} }
+    @keyframes boxIn{ from{transform:translateY(8px); opacity:0} to{transform:translateY(0); opacity:1} }
+    @keyframes pulse{ 0%,100%{ transform:translateY(-50%) scale(1) } 50%{ transform:translateY(-50%) scale(1.12) } }
 
-    .emails p {
-      margin: 5px 0;
-    }
+    /* Salidas */
+    .overlay.leaving{ animation:overlayOut .35s ease both; }
+    .overlay.leaving .intro-box{ animation:boxOut .35s ease both; }
+    .overlay.leaving .arrow-btn{ animation:none; opacity:.4; }
+
+    @keyframes overlayOut{ from{opacity:1} to{opacity:0} }
+    @keyframes boxOut{ from{transform:translateY(0); opacity:1} to{transform:translateY(12px); opacity:0} }
+
+    @media (max-width:640px){ .close-btn{ display:none; } }
   </style>
 </head>
 <body>
 
-<div class="overlay">
-  <div class="intro-box">
-    <button class="close-btn" onclick="window.location.href='mapas_interactivos/mapa_Arapiles.html'">✕</button>
-    <!-- Logo Complutense -->
-    <img src="complutense.png" alt="Logo Complutense" class="logo">
-    
-    <h2>TFM - Análisis de Movilidad en Madrid</h2>
-    <p>
-      Este proyecto presenta una serie de <strong>mapas interactivos</strong> centrados en la movilidad de los residentes de Madrid,
-      como parte de un <strong>Trabajo de Fin de Máster en Ciudades Inteligentes</strong> realizado por <strong>Juan Jiménez Fernández</strong>.
-    </p>
-    <p>
-      Los datos utilizados proceden del <strong>Consorcio Regional de Transportes de Madrid (CRTM)</strong> y corresponden a una semana laboral del año <strong>2019</strong>.
-      A partir de las <strong>validaciones reales</strong> de usuarios en el sistema de transporte público,
-      se ha reconstruido una estimación de los viajes realizados, generando un <strong>modelo de flujos de movilidad</strong>.
-    </p>
-    <p>
-      Todo el tratamiento de los datos ha respetado estrictamente criterios de <strong>anonimización</strong> y <strong>privacidad</strong>.
-    </p>
-    <p>
-      Se ofrecen dos tipos de visualización para cada barrio de Madrid:
-    </p>
-    <ul style="text-align:left; margin-left: 20px;">
-      <li><strong>Mapa de destinos:</strong> muestra a qué zonas de la ciudad se desplazan los residentes del barrio seleccionado.</li>
-      <li><strong>Animación de viajes:</strong> una representación dinámica de los trayectos diarios generados desde ese barrio.</li>
-    </ul>
-    <p>
-      En la parte inferior izquierda de los mapas animados, encontrarás una <strong>barra de control</strong> donde puedes ajustar la <strong>velocidad de reproducción (FPS)</strong>
-      y desplazarte por la <strong>línea temporal</strong> para ver cómo evoluciona la movilidad a lo largo del día.
-    </p>
-    <p>
-      Puedes usar el buscador para elegir un barrio y comenzar la exploración.
-    </p>
+  <div class="overlay" id="overlay">
+    <div class="intro-wrap">
+      <div class="intro-box">
+        <button class="close-btn" onclick="closeIntro()">✕</button>
 
+        <img src="complutense.png" alt="Logo Complutense" class="logo">
+        <h2>TFM - Análisis de Movilidad en Madrid</h2>
+        <p>
+          Este proyecto presenta una serie de <strong>mapas interactivos</strong> centrados en la movilidad de los residentes de Madrid,
+          como parte de un <strong>Trabajo de Fin de Máster en Ciudades Inteligentes</strong> realizado por <strong>Juan Jiménez Fernández</strong>.
+        </p>
+        <p>
+          Los datos utilizados proceden del <strong>Consorcio Regional de Transportes de Madrid (CRTM)</strong> y corresponden a una semana laboral del año <strong>2019</strong>.
+          A partir de las <strong>validaciones reales</strong> de usuarios en el sistema de transporte público,
+          se ha reconstruido una estimación de los viajes realizados, generando un <strong>modelo de flujos de movilidad</strong>.
+        </p>
+        <p>
+          Todo el tratamiento de los datos ha respetado estrictamente criterios de <strong>anonimización</strong> y <strong>privacidad</strong>.
+        </p>
+        <p>
+          Se ofrecen dos tipos de visualización para cada barrio de Madrid:
+        </p>
+        <ul style="text-align:left; margin-left: 20px;">
+          <li><strong>Mapa de destinos:</strong> muestra a qué zonas de la ciudad se desplazan los residentes del barrio seleccionado.</li>
+          <li><strong>Animación de viajes:</strong> una representación dinámica de los trayectos diarios generados desde ese barrio.</li>
+        </ul>
+        <p>
+          En la parte inferior izquierda de los mapas animados, encontrarás una <strong>barra de control</strong> donde puedes ajustar la <strong>velocidad de reproducción (FPS)</strong>
+          y desplazarte por la <strong>línea temporal</strong> para ver cómo evoluciona la movilidad a lo largo del día.
+        </p>
+        <p>
+          Puedes usar el buscador para elegir un barrio y comenzar la exploración.
+        </p>
+        <div class="emails">
+          <p><strong>Email UCM:</strong> juanji07@ucm.es</p>
+          <p><strong>Email personal:</strong> jjimenezfernan@gmail.com</p>
+        </div>
+      </div>
 
-
-    <div class="emails">
-      <p><strong>Email UCM:</strong>juanji07@ucm.es</p>
-      <p><strong>Email personal:</strong>jjimenezfernan@gmail.com</p>
+      <!-- Flecha fuera de la caja pero pegada al borde -->
+      <button class="arrow-btn" onclick="closeIntro()" aria-label="Continuar">➜</button>
     </div>
   </div>
-</div>
 
+  <script>
+    function closeIntro(){
+      const overlay = document.getElementById('overlay');
+      overlay.classList.add('leaving');
+      // espera a que termine la animación antes de navegar
+      setTimeout(() => {
+        window.location.href = 'mapas_interactivos/mapa_Arapiles.html';
+      }, 350); // mismo tiempo que las animaciones CSS
+    }
+  </script>
 </body>
 </html>
